@@ -1,9 +1,11 @@
+
 #include "shell.h"
 
 /**
  * _eputs - prints an input string
  * @str: the string to be printed
- * return: nothing
+ *
+ * Return: Nothing
  */
 void _eputs(char *str)
 {
@@ -20,14 +22,15 @@ void _eputs(char *str)
 
 /**
  * _eputchar - writes the character c to stderr
- * @c: the character to print
- * return: on success 1
- * on error, -1 is returned, and errno is set appropriately
+ * @c: The character to print
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
  */
 int _eputchar(char c)
 {
 	static int i;
-	static char buf[WRITE_BUF_SIZE};
+	static char buf[WRITE_BUF_SIZE];
 
 	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
 	{
@@ -40,16 +43,17 @@ int _eputchar(char c)
 }
 
 /**
- * _putfc - writes the character c to given fd
- * @c: the character to print
- * @fd: the filedescriptor to write to
- * retur: on success 1
- * on error, -1 is returned, and errno is set appropriately
+ * _putfd - writes the character c to given fd
+ * @c: The character to print
+ * @fd: The filedescriptor to write to
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
  */
-int _putfd(char c, inr fd)
+int _putfd(char c, int fd)
 {
 	static int i;
-	static char buf[WRITE_BUF_SIZE]
+	static char buf[WRITE_BUF_SIZE];
 
 	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
 	{
@@ -65,7 +69,8 @@ int _putfd(char c, inr fd)
  * _putsfd - prints an input string
  * @str: the string to be printed
  * @fd: the filedescriptor to write to
- * return: the number of chars put
+ *
+ * Return: the number of chars put
  */
 int _putsfd(char *str, int fd)
 {
@@ -75,8 +80,7 @@ int _putsfd(char *str, int fd)
 		return (0);
 	while (*str)
 	{
-		i += _putfd(*str++, fc);
+		i += _putfd(*str++, fd);
 	}
 	return (i);
 }
-
